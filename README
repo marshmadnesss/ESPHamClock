@@ -92,9 +92,7 @@ sudo apt install -y git build-essential g++ make libx11-dev gpsd gpsd-clients
 ```
 
 Download ESPHamClock:
-```bash
-git clone https://github.com/marshmadnesss/ESPHamClock.git
-```
+`git clone https://github.com/marshmadnesss/ESPHamClock.git`
 
 Go to ESPHamClock directory:
 ```bash
