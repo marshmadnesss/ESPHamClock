@@ -82,30 +82,21 @@ Community improvements to documentation are welcome.
 ## 📥 Installation (Debian / Ubuntu / Raspberry Pi OS)
 
 Update system:
-```bash
-sudo apt update
-```
+`sudo apt update`
 
 Install dependencies:
-```bash
-sudo apt install -y git build-essential g++ make libx11-dev gpsd gpsd-clients
-```
+
+`sudo apt install -y git build-essential g++ make libx11-dev gpsd gpsd-clients`
 
 Download ESPHamClock:
 `git clone https://github.com/marshmadnesss/ESPHamClock.git`
 
 Go to ESPHamClock directory:
-```bash
-cd ESPHamClock
-```
+`cd ESPHamClock`
 
 Build ESPHamClock (800x480):
-```bash
-make hamclock-800x480
-```
+`make hamclock-800x480`
 
 Run ESPHamClock:
-```bash
-./hamclock-800x480
-```
+`./hamclock-800x480`
 
