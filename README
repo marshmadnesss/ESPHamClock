@@ -1,4 +1,4 @@
-# ESPHamClock (Community Mirror) (Installtion below)
+# ESPHamClock (Community Mirror)
 
 ESPHamClock is an ESP-based implementation of **HamClock**, a widely used amateur radio clock and situational awareness display.
 
@@ -9,7 +9,7 @@ This repository is a **community-maintained mirror** of the ESPHamClock source c
 ## 🕊 In Memoriam
 
 This project is dedicated to the memory of  
-**:contentReference[oaicite:0]{index=0} (WB0OEW)**
+**Elwood Downey, WB0OEW**
 
 Elwood was the creator of HamClock and a tremendous contributor to the amateur radio community.  
 His work helped thousands of operators better understand propagation, timing, and global radio conditions.
@@ -79,26 +79,7 @@ Community improvements to documentation are welcome.
 
 ---
 
-## 🤝 Contributing
-
-Contributions are welcome and encouraged.
-
-Please see [`CONTRIBUTING.md`](CONTRIBUTING.md) for guidelines.
-
----
-
-## 📜 License
-
-This project is licensed under the **MIT License**.
-
-All original copyright notices and licenses are preserved.
-
-## Installation (Debian / Ubuntu / Raspberry Pi OS)
-
-Copy and paste **everything below** into a terminal:
-
-
-## Installation (Debian / Ubuntu / Raspberry Pi OS)
+## 📥 Installation (Debian / Ubuntu / Raspberry Pi OS)
 
 Copy and paste **everything below** into a terminal:
 
@@ -109,6 +90,4 @@ git clone https://github.com/marshmadnesss/ESPHamClock.git && \
 cd ESPHamClock && \
 make hamclock-800x480 && \
 ./hamclock-800x480
-
-
 
