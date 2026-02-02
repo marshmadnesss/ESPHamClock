@@ -109,4 +109,3 @@ git clone https://github.com/marshmadnesss/ESPHamClock.git && \
 cd ESPHamClock && \
 make hamclock-800x480 && \
 ./hamclock-800x480
-```
