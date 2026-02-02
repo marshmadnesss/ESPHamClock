@@ -83,7 +83,6 @@ Community improvements to documentation are welcome.
 
 Copy and paste **everything below** into a terminal:
 
-```bash
 sudo apt update && \
 sudo apt install -y git build-essential g++ make libx11-dev gpsd gpsd-clients && \
 git clone https://github.com/marshmadnesss/ESPHamClock.git && \
@@ -91,3 +90,6 @@ cd ESPHamClock && \
 make hamclock-800x480 && \
 ./hamclock-800x480
 
+```bash
+sudo apt update
+```
