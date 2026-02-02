@@ -3,21 +3,12 @@
 
 #include <ESP8266httpUpdate.h>
 #include <WiFiUdp.h>
-#include <WiFiClientSecure.h>
+
 
 #include "HamClock.h"
 
-// GitHub raw update source (community build)
-static const char GH_HOST[] = "raw.githubusercontent.com";
-static const uint16_t GH_PORT = 443;
-
-// Files in your repo (raw URLs)
-static const char GH_VERSION_PATH[] = "/marshmadnesss/ESPHamClock/main/VERSION";
-static const char GH_CHANGES_PATH[] = "/marshmadnesss/ESPHamClock/main/CHANGES.txt";
-
-// Firmware zips in your repo
-static const char GH_FW_STABLE_PATH[] = "/marshmadnesss/ESPHamClock/main/firmware/ESPHamClock.zip";
-// Beta example: "/.../firmware/ESPHamClock-V4.25b1.zip" will be built dynamically
+// server path to script that returns the newest version available
+static const char v_page[] = "/version.pl";
 
 // query layout
 #define ASK_TO          60                              // ask timeout, secs
@@ -57,22 +48,23 @@ static void onProgressCB (int sofar, int total)
     checkWebServer (true);
 }
 
+
+
 /* return whether a new version is available.
  * if so pass back the name in new_ver[new_verl]
  * default no if error.
  */
 bool newVersionIsAvailable (char *new_ver, uint16_t new_verl)
 {
-    WiFiClientSecure v_client;
-    v_client.setInsecure();                 // skip cert validation
+    WiFiClient v_client;
     char line[100];
     bool found_newer = false;
 
-    Serial.printf ("%s%s\n", GH_HOST, GH_VERSION_PATH);
-    if (v_client.connect (GH_HOST, GH_PORT)) {
+    Serial.printf ("%s/%s\n", backend_host, v_page);
+    if (v_client.connect (backend_host, backend_port)) {
 
-        // query VERSION file
-        httpGET (v_client, GH_HOST, GH_VERSION_PATH);
+        // query page
+        httpHCGET (v_client, backend_host, v_page);
 
         // skip header
         if (!httpSkipHeader (v_client)) {
@@ -92,7 +84,6 @@ bool newVersionIsAvailable (char *new_ver, uint16_t new_verl)
         float new_v = atof(line);
         bool we_are_beta = strchr (hc_version, 'b') != NULL;
         bool new_is_beta = strchr (line, 'b') != NULL;
-
         if (we_are_beta) {
             if (new_is_beta) {
                 int our_beta_v = atoi (strchr(hc_version,'b') + 1);
@@ -113,10 +104,17 @@ bool newVersionIsAvailable (char *new_ver, uint16_t new_verl)
                 strncpy (new_ver, line, new_verl);
             }
         }
+
+        // just log next few lines for debug
+        // for (int i = 0; i < 2 && getTCPLine (v_client, line, sizeof(line), NULL); i++)
+            // Serial.printf ("  %s\n", line);
     }
 
 out:
+
+    // finished with connection
     v_client.stop();
+
     return (found_newer);
 }
 
@@ -183,16 +181,13 @@ bool askOTAupdate(char *new_ver, bool show_pending, bool def_yes)
 
     // read list of changes
     selectFontStyle (LIGHT_FONT, SMALL_FONT);
-    WiFiClientSecure v_client;
-    v_client.setInsecure();
-
+    WiFiClient v_client;
     char **lines = NULL;                        // malloced list of malloced strings -- N.B. free!
     int n_lines = 0;
+    if (v_client.connect (backend_host, backend_port)) {
 
-    if (v_client.connect (GH_HOST, GH_PORT)) {
-
-        // query CHANGES file
-        httpGET (v_client, GH_HOST, GH_CHANGES_PATH);
+        // query page
+        httpHCGET (v_client, backend_host, v_page);
 
         // skip header
         if (!httpSkipHeader (v_client)) {
@@ -200,7 +195,7 @@ bool askOTAupdate(char *new_ver, bool show_pending, bool def_yes)
             goto out;
         }
 
-        // skip first line (version number)
+        // skip next line which is new version number
         if (!getTCPLine (v_client, line, sizeof(line), NULL)) {
             Serial.println ("Info timed out");
             goto out;
@@ -215,18 +210,17 @@ bool askOTAupdate(char *new_ver, bool show_pending, bool def_yes)
             lines[n_lines++] = strdup (line);
         }
     }
-
-out:
+  out:
     v_client.stop();
 
     // how many will fit
     const int max_lines = (tft.height() - FD - INFO_Y)/LH;
 
-    // prep first display of changes (safe even if n_lines == 0)
+    // prep first display of changes
     drawChangeList (lines, 0, n_lines);
 
     // scrollbar
-    SBox sb_b = {SCR_X, SCR_Y, SCR_W, SCR_H};
+    SBox sb_b = {SCR_X, SCR_Y, SCR_W, SCR_H}; 
     ScrollBar sb;
     sb.init (max_lines, n_lines, sb_b);
 
@@ -309,6 +303,7 @@ out:
         tft.fillRect (count_x, count_y-30, 60, 40, RA8875_BLACK);
         tft.setCursor (count_x, count_y);
         tft.print(--count_s);
+
     }
 
     // clean up
@@ -341,21 +336,12 @@ void doOTAupdate(const char *newver)
     ESPhttpUpdate.onProgress (onProgressCB);
 
     // build url
-    WiFiClientSecure client;
-    client.setInsecure();
+    WiFiClient client;
     char url[400];
-
-    if (strchr(newver, 'b')) {
-        // beta pulls a versioned zip you place in firmware/
-        snprintf (url, sizeof(url),
-            "https://%s/marshmadnesss/ESPHamClock/main/firmware/ESPHamClock-V%s.zip",
-            GH_HOST, newver);
-    } else {
-        // stable always pulls latest stable zip
-        snprintf (url, sizeof(url),
-            "https://%s%s",
-            GH_HOST, GH_FW_STABLE_PATH);
-    }
+    if (strchr(newver, 'b'))
+        snprintf (url, sizeof(url), "https://%s/ham/HamClock/ESPHamClock-V%s.zip", backend_host, newver);
+    else
+        snprintf (url, sizeof(url), "https://%s/ham/HamClock/ESPHamClock.zip", backend_host);
 
     // go
     t_httpUpdate_return ret = ESPhttpUpdate.update(client, url);
