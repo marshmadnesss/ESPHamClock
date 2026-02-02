@@ -1,16 +1,94 @@
-Project web site: http://www.clearskyinstitute.com/ham/HamClock
+# ESPHamClock (Community Mirror)
 
-HamClock is a kiosk-style application that provides real time space weather, radio propagation models,
-operating events and other information particularly useful to the radio amateur.
+ESPHamClock is an ESP-based implementation of **HamClock**, a widely used amateur radio clock and situational awareness display.
 
-Executive summary for UNIX systems:
-    type `make' for size and style options
-    make <size>
-    sudo make install
+This repository is a **community-maintained mirror** of the ESPHamClock source code, preserved under the original MIT license to ensure continued availability, transparency, and community contribution.
 
-Executive summary for ESP8266 Huzzah:
-    install and run Arduino IDE
-    configure as per "ESP8266 Notes" tab at above web page
-    open ESPHamClock.ino in IDE
-    Sketch -> Compile
-    Sketch -> Upload
+---
+
+## 🕊 In Memoriam
+
+This project is dedicated to the memory of  
+**:contentReference[oaicite:0]{index=0} (WB0OEW)**
+
+Elwood was the creator of HamClock and a tremendous contributor to the amateur radio community.  
+His work helped thousands of operators better understand propagation, timing, and global radio conditions.
+
+This repository exists to **preserve his work**, honor his contributions, and ensure the community can continue to learn from and build upon what he created.
+
+---
+
+## 📡 About ESPHamClock
+
+ESPHamClock is a **client application**. It aggregates and visualizes information from multiple **independent, public, and community-run data sources**, including:
+
+- DX Cluster nodes (ham-run, distributed)
+- NTP servers for accurate timekeeping
+- NOAA / NASA space weather feeds
+- Public amateur radio reference services
+- Optional GPS hardware (via gpsd)
+
+> **There is no single central backend server required for ESPHamClock to operate.**
+
+If any individual external data source becomes unavailable, only the related feature may degrade; the application itself continues to function.
+
+---
+
+## 🧠 Clarifying a Common Misconception
+
+Some users have expressed concern that ESPHamClock depends on a single author-operated backend server.
+
+**This is not the case.**
+
+- ESPHamClock does **not** require a proprietary server to run
+- It does **not** authenticate, license, or “phone home”
+- DX Cluster data comes from **independent, volunteer-run cluster nodes**
+- Time synchronization uses standard **NTP pools**
+- Solar and propagation data comes from **public scientific institutions**
+
+The original author hosted **distribution and support infrastructure** (such as downloads and documentation), but the runtime operation of ESPHamClock does **not** depend on that infrastructure.
+
+---
+
+## 📦 What This Repository Is
+
+- A preserved, open-source copy of ESPHamClock
+- A place for community review and contribution
+- A neutral, factual reference for how the software works
+- A long-term download source for users
+
+## ❌ What This Repository Is Not
+
+- It is not a fork claiming authorship
+- It is not a replacement for Elwood’s contributions
+- It is not a commercial or centralized service
+
+---
+
+## 🛠 Building & Flashing
+
+> (Existing build instructions remain unchanged from the original source.)
+
+Please refer to the original documentation within this repository for:
+- Supported ESP hardware
+- Display compatibility
+- Arduino IDE configuration
+- Flashing instructions
+
+Community improvements to documentation are welcome.
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome and encouraged.
+
+Please see [`CONTRIBUTING.md`](CONTRIBUTING.md) for guidelines.
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License**.
+
+All original copyright notices and licenses are preserved.
