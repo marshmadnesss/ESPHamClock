@@ -1,4 +1,4 @@
-# ESPHamClock (Community Mirror)
+# ESPHamClock (Community Mirror) (Installtion below)
 
 ESPHamClock is an ESP-based implementation of **HamClock**, a widely used amateur radio clock and situational awareness display.
 
@@ -92,3 +92,20 @@ Please see [`CONTRIBUTING.md`](CONTRIBUTING.md) for guidelines.
 This project is licensed under the **MIT License**.
 
 All original copyright notices and licenses are preserved.
+
+## Installation (Debian / Ubuntu / Raspberry Pi OS)
+
+Copy and paste **everything below** into a terminal:
+
+
+## Installation (Debian / Ubuntu / Raspberry Pi OS)
+
+Copy and paste **everything below** into a terminal:
+
+```bash
+sudo apt update && \
+sudo apt install -y git build-essential g++ make libx11-dev gpsd gpsd-clients && \
+git clone https://github.com/marshmadnesss/ESPHamClock.git && \
+cd ESPHamClock && \
+make hamclock-800x480 && \
+./hamclock-800x480
