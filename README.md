@@ -141,7 +141,9 @@ Ctrl+X
 
 ### Enable the service:
 `sudo systemctl daemon-reexec`
+
 `sudo systemctl daemon-reload`
+
 `sudo systemctl enable hamclock`
 
 ### Start it now (no reboot needed):
