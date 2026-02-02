@@ -94,9 +94,72 @@ Community improvements to documentation are welcome.
 ### Go to ESPHamClock directory:
 `cd ESPHamClock`
 
-### Build ESPHamClock (800x480):
-`make hamclock-800x480`
+### If the system has a desktop (X11):
+`make hamclock-800x480
+./hamclock-800x480`
 
-### Run ESPHamClock:
-`./hamclock-800x480`
+### If the system is Raspberry Pi OS headless / Lite:
+`make hamclock-fb0-800x480
+./hamclock-fb0-800x480`
+
+## *OPTIONAL* Run on boot
+### Create a systemd service file:
+`sudo nano /etc/systemd/system/hamclock.service`
+
+### Paste THIS exactly (headless / fb0):
+```bash
+[Unit]
+Description=HamClock
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/ESPHamClock
+ExecStart=/home/pi/ESPHamClock/hamclock-fb0-800x480
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
+```
+
+### Important Notes
+
+`User=pi` → change if you use a different user
+
+Path assumes:`=
+`/home/pi/ESPHamClock/hamclock-fb0-800x480`
+
+No X11, no desktop, no login required
+
+Ctrl+O, Enter
+Ctrl+X
+
+### Enable the service:
+`sudo systemctl daemon-reexec`
+`sudo systemctl daemon-reload`
+`sudo systemctl enable hamclock`
+
+### Start it now (no reboot needed):
+`sudo systemctl start hamclock`
+
+### Test reboot behavior (recommended):
+`sudo reboot`
+
+After reboot:
+Pi boots
+HamClock launches automatically
+No login
+No commands needed
+
+## Useful management commands
+
+### Check Status:
+`systemctl status hamclock`
+
+
 
