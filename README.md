@@ -104,7 +104,7 @@ Community improvements to documentation are welcome.
 ### Run HamClock
 `hamclock &`
 
-### If the system is Raspberry Pi OS (bookworm) headless / Lite (CLI Only):
+### If the system is Debian12/Ubuntu/PiOS(bookworm) *headless* / *Lite* (CLI Only):
 `make clean`
 
 `make -j 4 FB_DEPTH=16 hamclock-fb0-800x480`
@@ -161,7 +161,6 @@ Ctrl+X
 
 `sudo systemctl enable hamclock`
 
-`sudo systemctl start hamclock`
 
 ### Start it now (no reboot needed):
 `sudo systemctl start hamclock`
@@ -179,6 +178,25 @@ No commands needed
 
 ### Check Status:
 `systemctl status hamclock`
+
+## 📥 Installation for MacOS
+
+## To install HamClock on macOS:
+
+## Using macports:
+1. `sudo port install hamclock xorg-server`
+
+2. log out and back in to reinitialize launchd then just type hamclock and it should come right up.
+
+## Otherwise you can build from source using the scenic route:
+
+Install XQuartz and Xcode.
+
+Start Xcode then open More developer tools and install the command line tools. You may also need to run the following command line in Terminal: xcode-select --install.
+
+## Now follow the instructions for any UNIX system, below.
+
+If you want a launch icon for the Dock or Desktop, I recommend using the free program Platypus to wrap HamClock into a proper application bundle. The script it will run is just one line to give the full path to the hamclock executable (/opt/local/bin/hamclock if using macports or /usr/local/bin/hamclock otherwise). For an icon use the file hamclock.png found in the ESPHamCLock directory.
 
 
 
