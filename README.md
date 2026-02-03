@@ -130,7 +130,7 @@ Supported fb0 build sizes:
 ### Run HamClock
 `hamclock`
 
-## *OPTIONAL* Run on boot
+## *OPTIONAL* Run on boot for headless/lite OS
 ### Create a systemd service file:
 `sudo nano /etc/systemd/system/hamclock.service`
 
