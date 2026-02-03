@@ -192,7 +192,7 @@ No commands needed
 
 Install XQuartz and Xcode.
 
-Start Xcode then open More developer tools and install the command line tools. You may also need to run the following command line in Terminal: xcode-select --install.
+Start Xcode then open More developer tools and install the command line tools. You may also need to run the following command line in Terminal: `xcode-select --install.`
 
 ## Now follow the instructions for any UNIX system, below.
 
