@@ -79,7 +79,7 @@ Community improvements to documentation are welcome.
 
 ---
 
-## 📥 Installation (Debian / Ubuntu / Raspberry Pi OS)
+## 📥 Installation (Debian12 / Ubuntu / Raspberry Pi (bookworm) OS)
 
 ### Update system:
 `sudo apt update`
@@ -95,12 +95,38 @@ Community improvements to documentation are welcome.
 `cd ESPHamClock`
 
 ### If the system has a desktop (X11):
-`make hamclock-800x480
-./hamclock-800x480`
+`make clean`
 
-### If the system is Raspberry Pi OS headless / Lite:
-`make hamclock-fb0-800x480
-./hamclock-fb0-800x480`
+`make -j 4 hamclock-800x480`
+
+`sudo make install`
+
+### Run HamClock
+`hamclock &`
+
+### If the system is Raspberry Pi OS (bookworm) headless / Lite (CLI Only):
+`make clean`
+
+`make -j 4 FB_DEPTH=16 hamclock-fb0-800x480`
+
+Note:
+Supported fb0 build sizes:
+
+`hamclock-fb0-800x480`
+
+`hamclock-fb0-1600x960`
+
+`hamclock-fb0-2400x1440`
+
+`hamclock-fb0-3200x1920`
+
+### Install the built binary
+`sudo cp ./hamclock-fb0-800x480 /usr/local/bin/hamclock
+sudo chown root:root /usr/local/bin/hamclock
+sudo chmod 4755 /usr/local/bin/hamclock`
+
+### Run HamClock
+`hamclock`
 
 ## *OPTIONAL* Run on boot
 ### Create a systemd service file:
@@ -109,19 +135,14 @@ Community improvements to documentation are welcome.
 ### Paste THIS exactly (headless / fb0):
 ```bash
 [Unit]
-Description=HamClock
-After=network-online.target
-Wants=network-online.target
+Description=HamClock framebuffer display
+After=multi-user.target
 
 [Service]
-Type=simple
-User=pi
-WorkingDirectory=/home/pi/ESPHamClock
-ExecStart=/home/pi/ESPHamClock/hamclock-fb0-800x480
+ExecStart=/usr/local/bin/hamclock
 Restart=always
-RestartSec=5
-StandardOutput=journal
-StandardError=journal
+User=root
+Environment=HOME=/root
 
 [Install]
 WantedBy=multi-user.target
@@ -131,8 +152,7 @@ WantedBy=multi-user.target
 
 `User=pi` → change if you use a different user
 
-Path assumes:`=
-`/home/pi/ESPHamClock/hamclock-fb0-800x480`
+Path assumes:`=/home/pi/ESPHamClock/hamclock-fb0-800x480`
 
 No X11, no desktop, no login required
 
@@ -140,11 +160,11 @@ Ctrl+O, Enter
 Ctrl+X
 
 ### Enable the service:
-`sudo systemctl daemon-reexec`
-
 `sudo systemctl daemon-reload`
 
 `sudo systemctl enable hamclock`
+
+`sudo systemctl start hamclock`
 
 ### Start it now (no reboot needed):
 `sudo systemctl start hamclock`
