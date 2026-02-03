@@ -121,9 +121,11 @@ Supported fb0 build sizes:
 `hamclock-fb0-3200x1920`
 
 ### Install the built binary
-`sudo cp ./hamclock-fb0-800x480 /usr/local/bin/hamclock
-sudo chown root:root /usr/local/bin/hamclock
-sudo chmod 4755 /usr/local/bin/hamclock`
+`sudo cp ./hamclock-fb0-800x480 /usr/local/bin/hamclock`
+
+`sudo chown root:root /usr/local/bin/hamclock`
+
+`sudo chmod 4755 /usr/local/bin/hamclock`
 
 ### Run HamClock
 `hamclock`
