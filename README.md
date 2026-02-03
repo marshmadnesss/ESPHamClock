@@ -150,11 +150,6 @@ Environment=HOME=/root
 WantedBy=multi-user.target
 ```
 
-### Important Notes
-
-`User=pi` → change if you use a different user
-
-Path assumes:`=/home/pi/ESPHamClock/hamclock-fb0-800x480`
 
 No X11, no desktop, no login required
 
