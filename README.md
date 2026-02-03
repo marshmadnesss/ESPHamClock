@@ -181,14 +181,14 @@ No commands needed
 
 ## 📥 Installation for MacOS
 
-## To install HamClock on macOS:
+### To install HamClock on macOS:
 
-## Using macports:
+### Using macports:
 1. `sudo port install hamclock xorg-server`
 
 2. log out and back in to reinitialize launchd then just type hamclock and it should come right up.
 
-## Otherwise you can build from source using the scenic route:
+### Otherwise you can build from source using the scenic route:
 
 Install XQuartz and Xcode.
 
