@@ -194,7 +194,7 @@ Install XQuartz and Xcode.
 
 Start Xcode then open More developer tools and install the command line tools. You may also need to run the following command line in Terminal: `xcode-select --install.`
 
-## Now follow the instructions for any UNIX system, below.
+## Now follow the instructions for any UNIX system, above.
 
 If you want a launch icon for the Dock or Desktop, I recommend using the free program Platypus to wrap HamClock into a proper application bundle. The script it will run is just one line to give the full path to the hamclock executable (/opt/local/bin/hamclock if using macports or /usr/local/bin/hamclock otherwise). For an icon use the file hamclock.png found in the ESPHamCLock directory.
 
