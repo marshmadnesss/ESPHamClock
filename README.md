@@ -36,15 +36,20 @@ If any individual external data source becomes unavailable, only the related fea
 
 ## 🧠 Clarifying 
 
-Some users have expressed concern that ESPHamClock depends on a single author-operated backend server.
+### Some users have expressed concern that ESPHamClock depends on a single author-operated backend server.
 
-**This is sadly true**
+This is sadly true
 
 After the unfortunate incident occured from the author and creator of ESP Ham Clock, many in facebook groups and on reddit have been trying to skim the code (heavily C++ written) to see what exactly is being served on a backend that points to clearskyinstitute.com. 
 This sadly is what serves as a centeralized node that takes all incoming live information that all ESP Ham Clock EUD's (End User Devices) take in. We are actively trying to build a new backbone infrustrstucture to make ESPHamClock more "open source"
 and reduce reliance on a single node serving live time information to EUD's.
 Currently, all live information served via clearskyinstitute.com will continue to run until June 2026. This currentl release of ESP HAM Clock (date 02/03/2026) will serve live information from clearskyinstitute.com until a new node is created to serve live info.
 We are actively trying to rewrite all of ESPHamClock to not rely on a centeralized node for this information and that all information that was pushed to the centeral backend node will soon be opened to all Ham Clock EUD's. 
+
+### Date 2/04/2026
+As of right now, a backend server is being recreated from scratch. We have been able to identify all resources the backend of Ham Clock was using and we are currently rebuilding it.
+Right now as of current of the date above, we have been able to pull maps, cities, overlay imagery, space, weather, satalites, etc. 
+As of writing this, we are trying to figure out how to get PSK data to show live. The current *new* backend server being created will have zero reliance on clearskyinstitute.com once up and operational.
 ---
 
 ## 📦 What This Repository Is
