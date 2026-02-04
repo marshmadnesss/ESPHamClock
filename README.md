@@ -34,20 +34,17 @@ If any individual external data source becomes unavailable, only the related fea
 
 ---
 
-## 🧠 Clarifying a Common Misconception
+## 🧠 Clarifying 
 
 Some users have expressed concern that ESPHamClock depends on a single author-operated backend server.
 
-**This is not the case.**
+**This is sadly true**
 
-- ESPHamClock does **not** require a proprietary server to run
-- It does **not** authenticate, license, or “phone home”
-- DX Cluster data comes from **independent, volunteer-run cluster nodes**
-- Time synchronization uses standard **NTP pools**
-- Solar and propagation data comes from **public scientific institutions**
-
-The original author hosted **distribution and support infrastructure** (such as downloads and documentation), but the runtime operation of ESPHamClock does **not** depend on that infrastructure.
-
+After the unfortunate incident occured from the author and creator of ESP Ham Clock, many in facebook groups and on reddit have been trying to skim the code (heavily C++ written) to see what exactly is being served on a backend that points to clearskyinstitute.com. 
+This sadly is what serves as a centeralized node that takes all incoming live information that all ESP Ham Clock EUD's (End User Devices) take in. We are actively trying to build a new backbone infrustrstucture to make ESPHamClock more "open source"
+and reduce reliance on a single node serving live time information to EUD's.
+Currently, all live information served via clearskyinstitute.com will continue to run until June 2026. This currentl release of ESP HAM Clock (date 02/03/2026) will serve live information from clearskyinstitute.com until a new node is created to serve live info.
+We are actively trying to rewrite all of ESPHamClock to not rely on a centeralized node for this information and that all information that was pushed to the centeral backend node will soon be opened to all Ham Clock EUD's. 
 ---
 
 ## 📦 What This Repository Is
