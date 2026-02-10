@@ -46,10 +46,10 @@ and reduce reliance on a single node serving live time information to EUD's.
 Currently, all live information served via clearskyinstitute.com will continue to run until June 2026. This currentl release of ESP HAM Clock (date 02/03/2026) will serve live information from clearskyinstitute.com until a new node is created to serve live info.
 We are actively trying to rewrite all of ESPHamClock to not rely on a centeralized node for this information and that all information that was pushed to the centeral backend node will soon be opened to all Ham Clock EUD's. 
 
-### Date 2/04/2026
-As of right now, a backend server is being recreated from scratch. We have been able to identify all resources the backend of Ham Clock was using and we are currently rebuilding it.
-Right now as of current of the date above, we have been able to pull maps, cities, overlay imagery, space, weather, satalites, etc. 
-As of writing this, we are trying to figure out how to get PSK data to show live. The current *new* backend server being created will have zero reliance on clearskyinstitute.com once up and operational.
+### DATE 2/10/2026
+Live Spots for PSK reports is now working on the new backend server we are creating. We are still beta testing to make sure all data displayed is true, live, and accurate as time drifts can cause discrepencies. Please keep coming back to this github for more updates.
+
+Again, it is on the drawing board to re-write this version of HAM Clock to not rely on a backend server for this information but after rebuilding one myself, I can see why it worked this way. As live PSK reports would come in, that data is ALOT...BUT...Its because my backend server is currently pulling GLOBAL PSK reports, and then HAM Clock is just filtering for your grid. So you are obviously only displayed PSK reports Live for your grid only, so - we will be writing it that based on the Grid you input on set up, it will only grab PSK reports for your grid only to write to your device and self purge and live reports older than 24hrs + 1m. 
 ---
 
 ## 📦 What This Repository Is
