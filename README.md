@@ -1,3 +1,12 @@
+# Edit as of 2/18/2026
+
+Plans to have this repository work off of a new backend server is slotted to be live by 2/20/2026
+That means this repository will not work off of Clear Sky Institutes backend and will be entirely dependent on a new and maintained backend. 
+The backend for this repostiry is nearly a 1:1 working clone of Elwoods backened. There will be a PayPal contributions button added shortly if you would like to donate
+to keep the server maintained and as we work to re-write Ham Clock to work independently. 
+
+---
+
 # ESPHamClock (Community Mirror)
 
 ESPHamClock is an ESP-based implementation of **HamClock**, a widely used amateur radio clock and situational awareness display.
